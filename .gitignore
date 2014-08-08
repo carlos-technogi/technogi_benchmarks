@@ -1,0 +1,5 @@
+node_express_bm/.idea/
+node_express_bm/.idea/*
+node_express_bm/node_modules
+grails_bm/target/.idea
+rails_bm/tmp
