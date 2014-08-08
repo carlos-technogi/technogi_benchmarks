@@ -28,7 +28,7 @@ Praesent aliquam, tellus sed adipiscing pellentesque, magna augue rhoncus augue,
     }
 
     def p3(){
-
+        render([msg:request.getJSON()] as JSON)
     }
 
 }

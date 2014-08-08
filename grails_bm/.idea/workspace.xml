@@ -27,8 +27,8 @@
       <file leaf-file-name="BenchmarkController.groovy" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/grails-app/controllers/grails_bm/BenchmarkController.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.61898214" vertical-offset="0" max-vertical-offset="727">
-              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.5983494" vertical-offset="0" max-vertical-offset="727">
+              <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -489,12 +489,12 @@
       <changelist id="acf1e372-ecd6-4308-9ef4-165b03f8c3d7" name="Default" comment="" />
       <created>1407521044088</created>
       <updated>1407521044088</updated>
-      <workItem from="1407521045617" duration="827000" />
+      <workItem from="1407521045617" duration="1485000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="827000" />
+    <option name="totallyTimeSpent" value="1485000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="49" y="36" width="1363" height="860" extended-state="0" />
@@ -565,8 +565,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/controllers/grails_bm/BenchmarkController.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.61898214" vertical-offset="0" max-vertical-offset="727">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.5983494" vertical-offset="0" max-vertical-offset="727">
+          <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
           <folding />
         </state>
       </provider>
