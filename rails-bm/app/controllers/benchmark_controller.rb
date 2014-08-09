@@ -27,8 +27,13 @@ Praesent aliquam, tellus sed adipiscing pellentesque, magna augue rhoncus augue,
   end
 
   def p4
+    render :json => {msg: fib(10)}, status=> 200
   end
 
   def p5
   end
+
+  def fib(n)
+    n <= 2 ? 1 : fib(n-2) + fib(n-1) 
+  end 
 end

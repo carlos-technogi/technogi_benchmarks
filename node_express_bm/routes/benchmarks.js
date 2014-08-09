@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
+function fib(n){
+  return (n<=2)?1:fib(n-2)+fib(n-1);
+}
+
 router.get('/p1',function(req,res){
   res.json({msg:"Hello World"});
 });
@@ -14,5 +18,8 @@ router.post('/p3',function(req,res){
   res.json({msg:req.body.content.length});
 });
 
+router.get('/p4',function(req,res){
+  res.json({msg:fib(10)});
+});
 
 module.exports = router;

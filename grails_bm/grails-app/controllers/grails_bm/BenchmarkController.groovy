@@ -4,6 +4,10 @@ import grails.converters.JSON
 
 class BenchmarkController {
 
+    def fib(n){
+        n <= 2 ? 1 : fib(n-2) + fib(n-1) 
+    }
+
     def index() { }
 
     def p1(){
@@ -29,6 +33,10 @@ Praesent aliquam, tellus sed adipiscing pellentesque, magna augue rhoncus augue,
 
     def p3(){
         render([msg:request.getJSON()] as JSON)
+    }
+
+    def p4(){
+        render([msg:fib(10)] as JSON)
     }
 
 }
