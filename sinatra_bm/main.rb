@@ -2,6 +2,9 @@ require 'sinatra'
 require 'sinatra/json'
 require 'json'
 
+def fib(n)
+  n <= 2 ? 1 : fib(n-2) + fib(n-1) 
+end 
 
 get '/benchmark/p1' do
   json msg: 'Hello World' 
@@ -28,3 +31,6 @@ post '/benchmark/p3' do
   json msg: hash["content"].length
 end
 
+get '/benchmark/p4' do
+  json msg: fib(10)
+end
