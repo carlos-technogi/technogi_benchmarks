@@ -47,7 +47,7 @@ router.get('/p5',function(req,res){
 router.get('/p6',function(req,res){
   var id = Math.floor(Math.random()*1000);
   console.log("Getting "+id);
-  pool.query('SELECT * FROM small_data where id = ?',[id], function(err, rows) {
+  pool.query('SELECT * FROM small_data where id = ?',[id+1], function(err, rows) {
     if (err){
       res.status(500)
       res.json({error:err});
@@ -65,7 +65,7 @@ router.get('/p6',function(req,res){
 router.get('/p7',function(req,res){
   var id = Math.floor(Math.random()*1000);
   console.log("Getting "+id);
-  pool.query('SELECT * FROM long_data where id = ?',[id], function(err, rows) {
+  pool.query('SELECT * FROM long_data where id = ?',[id+1], function(err, rows) {
     if (err){
       res.status(500)
       res.json({error:err});
@@ -84,7 +84,7 @@ router.get('/p7',function(req,res){
 router.get('/p8',function(req,res){
   var id = Math.floor(Math.random()*1000);
   console.log("Getting "+id);
-  pool.query('SELECT * FROM small_data where id >= ? and id <= ?',[id,id+100], function(err, rows) {
+  pool.query('SELECT * FROM small_data where id > ? and id < ?',[id,id+100], function(err, rows) {
     if (err) throw err;
     if(rows.length>0){
       var results = [];

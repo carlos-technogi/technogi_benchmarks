@@ -85,25 +85,31 @@ object Application extends Controller {
 
   def p6 = Action {request=>
     println("p6")
-    DB.withConnection { implicit c =>
-      val content = SQL("""
+    try {
+      DB.withConnection { implicit c =>
+
+        val content = SQL(
+          """
         SELECT * FROM small_data
         WHERE id = {id}
                      """)
-        .on("id"->Random.nextInt(1000)).as(SqlParser.str("content").single)
-      if(content!=null){
+        .on("id" ->(Random.nextInt(1000)+1)).as(SqlParser.str("content").single) if(content!= null) {
 
         Ok(
           toJson(
             Map(
-              "msg"->toJson(content)
+              "msg"
+                ->toJson(content)
 
             ))).as("application/json")
       }else{
-        InternalServerError(toJson(Map("error"->"No Info")))
+        InternalServerError(toJson(Map("error"->"No Info"))
+        )
       }
     }
-
+    }catch{
+      case s: SqlMappingError => Ok(toJson(Map("error"->"No Info")))
+    }
   }
 
   def p7 = Action {request=>
@@ -113,7 +119,7 @@ object Application extends Controller {
         SELECT * FROM long_data
         WHERE id = {id}
                         """)
-        .on("id"->Random.nextInt(1000)).as(SqlParser.str("content").single)
+        .on("id"->(Random.nextInt(1000)+1)).as(SqlParser.str("content").single)
       if(content!=null){
 
         Ok(
@@ -137,8 +143,8 @@ object Application extends Controller {
       val id=Random.nextInt(1000)
       val info = SQL("""
         SELECT * FROM small_data
-        WHERE id >= {id}
-        AND id <= {idinc}
+        WHERE id > {id}
+        AND id < {idinc}
       """)
         .on("id"->id,"idinc"->(id+100))().toList
       if(info.size > 0){
