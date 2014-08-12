@@ -72,4 +72,22 @@ router.get('/p7',function(req,res){
   });
 });
 
+
+router.get('/p8',function(req,res){
+  var id = Math.floor(Math.random()*1000);
+  console.log("Getting "+id);
+  pool.query('SELECT * FROM small_data where id >= ? and id <= ?',[id,id+100], function(err, rows) {
+    if (err) throw err;
+    if(rows.length>0){
+      var results = [];
+      rows.forEach(function(entry){
+        results.push(entry);
+      });
+      res.json({msg:rows.length, results:results});
+    }else{
+      res.status(500)
+      res.json({error:"Not Found"});
+    }
+  });
+});
 module.exports = router;
