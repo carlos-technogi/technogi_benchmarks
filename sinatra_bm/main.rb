@@ -2,6 +2,8 @@ require 'sinatra'
 require 'sinatra/json'
 require 'json'
 
+set :port, 3000
+
 def fib(n)
   n <= 2 ? 1 : fib(n-2) + fib(n-1) 
 end 

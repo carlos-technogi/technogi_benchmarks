@@ -62,7 +62,14 @@ object Application extends Controller {
   }
 
   def p5 = Action {request =>
-    Ok()
+    request.headers.get("test").map { content =>
+      println(content)
+      Ok(toJson(Map("msg"->"OK")))
+    }.getOrElse {
+      println(request.headers)
+      Forbidden(toJson(Map("msg"->"error")))
+    }
+
   }
 
   def fib(n:Int): Int={

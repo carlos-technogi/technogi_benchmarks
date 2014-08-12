@@ -1,5 +1,14 @@
 var express = require('express');
 var router = express.Router();
+var mysql = require('mysql');
+
+var pool  = mysql.createPool({
+  connectionLimit : 15,
+  host     : '05d33fab1c59e14845dfbc490cb823516ca6eb50.rackspaceclouddb.com',
+  user     : 'technogi_bm',
+  password : 'technogi1234'
+});
+
 
 function fib(n){
   return (n<=2)?1:fib(n-2)+fib(n-1);
@@ -20,6 +29,25 @@ router.post('/p3',function(req,res){
 
 router.get('/p4',function(req,res){
   res.json({msg:fib(10)});
+});
+
+router.get('/p5',function(req,res){
+  if(req.headers.test){
+    console.log(req.headers.test);
+    res.json("OK");
+  }else{
+    console.log("No Header");
+    res.status(400);
+    res.json("No Header");
+  }
+  
+});
+
+router.get('/p6',function(req,res){
+  pool.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
+    if (err) throw err;
+    res.json({msg:rows[0].solution});
+  });
 });
 
 module.exports = router;
