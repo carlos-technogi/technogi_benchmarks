@@ -58,4 +58,18 @@ router.get('/p6',function(req,res){
   });
 });
 
+router.get('/p7',function(req,res){
+  var id = Math.floor(Math.random()*1000);
+  console.log("Getting "+id);
+  pool.query('SELECT * FROM long_data where id = ?',[id], function(err, rows) {
+    if (err) throw err;
+    if(rows.length>0){
+      res.json({msg:rows[0].content});
+    }else{
+      res.status(500)
+      res.json({error:"Not Found"});
+    }
+  });
+});
+
 module.exports = router;
