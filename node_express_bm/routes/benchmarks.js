@@ -3,7 +3,7 @@ var router = express.Router();
 var mysql = require('mysql');
 
 var pool  = mysql.createPool({
-  connectionLimit : 15,
+  connectionLimit : 25,
   host     : '05d33fab1c59e14845dfbc490cb823516ca6eb50.rackspaceclouddb.com',
   user     : 'technogi_bm',
   password : 'technogi1234',
