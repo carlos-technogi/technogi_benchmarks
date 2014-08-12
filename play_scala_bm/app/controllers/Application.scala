@@ -25,14 +25,14 @@ object Application extends Controller {
   }
 
   def p1 = Action {request =>
-
+    println("p1")
     Ok(toJson(
       Map("msg"->"Hello World")
     ))
   }
 
   def p2 = Action {request =>
-
+    println("p2")
     def body =
       """
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec risus enim, egestas eget auctor in, fermentum in neque. Proin et lectus nibh. Maecenas at elementum eros. Etiam orci augue, molestie et porta ut, faucibus in orci. Donec pulvinar eros dictum nunc molestie, id congue ligula elementum. Aenean feugiat pretium nunc ac ornare. Sed est lectus, accumsan facilisis eros vel, mattis blandit felis. Phasellus luctus mattis mauris, tincidunt pharetra ante dapibus non. Aliquam erat volutpat. Morbi eget volutpat metus. Ut pharetra quam turpis, at imperdiet purus convallis adipiscing. Curabitur ut quam dictum, placerat nisi sed, vehicula mauris. Morbi tincidunt posuere iaculis.
@@ -53,6 +53,7 @@ object Application extends Controller {
 
 
   def p3 = Action(parse.json) { request =>
+    println("p3")
     (request.body \ "content").asOpt[String].map { content =>
       Ok(toJson(
         Map( "msg" -> (content.length))
@@ -65,15 +66,15 @@ object Application extends Controller {
   }
 
   def p4 = Action {request =>
-
+    println("p4")
     Ok(toJson(
       Map("msg"->fib(10))
     ))
   }
 
   def p5 = Action {request =>
+    println("p5")
     request.headers.get("test").map { content =>
-      println(content)
       Ok(toJson(Map("msg"->"OK")))
     }.getOrElse {
       println(request.headers)
@@ -83,6 +84,7 @@ object Application extends Controller {
   }
 
   def p6 = Action {request=>
+    println("p6")
     DB.withConnection { implicit c =>
       val content = SQL("""
         SELECT * FROM small_data
@@ -105,6 +107,7 @@ object Application extends Controller {
   }
 
   def p7 = Action {request=>
+    println("p7")
     DB.withConnection { implicit c =>
       val content = SQL("""
         SELECT * FROM long_data
@@ -128,7 +131,7 @@ object Application extends Controller {
 
   def p8 = Action {request =>
 
-
+    println("p8")
     DB.withConnection { implicit c =>
 
       val id=Random.nextInt(1000)
