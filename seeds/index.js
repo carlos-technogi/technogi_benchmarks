@@ -1,20 +1,20 @@
 var uuid = require('node-uuid');
 var mysql      = require('mysql');
-/*var pool  = mysql.createPool({
+var pool  = mysql.createPool({
   connectionLimit : 20,
   host            : '05d33fab1c59e14845dfbc490cb823516ca6eb50.rackspaceclouddb.com',
   user            : 'technogi_bm',
   password        : 'technogi1234',
   database        : 'benchmarks'
-});*/
-
+});
+/*
 var pool  = mysql.createPool({
   connectionLimit : 20,
   host            : '127.0.0.1',
   user            : 'root',
   password        : '',
   database        : 'benchmarks'
-});
+});*/
 
 
 var executed = 0;
