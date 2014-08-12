@@ -93,7 +93,9 @@ object Application extends Controller {
         SELECT * FROM small_data
         WHERE id = {id}
                      """)
-        .on("id" ->(Random.nextInt(1000)+1)).as(SqlParser.str("content").single) if(content!= null) {
+        .on("id" ->(Random.nextInt(1000)+1)).as(SqlParser.str("content").single)
+
+        if(content!= null) {
 
         Ok(
           toJson(
