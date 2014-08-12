@@ -4,9 +4,19 @@ package controllers
 technogi_bm
 technogi1234
  */
+
 import play.api._
+import play.api.db.DB
+import play.api.libs.json
+import play.api.libs.json.{Format, JsValue, Writes}
 import play.api.mvc._
-import play.api.libs.json.Json.toJson
+import play.libs.Json
+
+import play.api.libs.json.Json._
+import play.api.Play.current
+import anorm._
+
+import scala.util.Random
 
 object Application extends Controller {
 
@@ -70,6 +80,80 @@ object Application extends Controller {
       Forbidden(toJson(Map("msg"->"error")))
     }
 
+  }
+
+  def p6 = Action {request=>
+    DB.withConnection { implicit c =>
+      val content = SQL("""
+        SELECT * FROM small_data
+        WHERE id = {id}
+                     """)
+        .on("id"->Random.nextInt(1000)).as(SqlParser.str("content").single)
+      if(content!=null){
+
+        Ok(
+          toJson(
+            Map(
+              "msg"->toJson(content)
+
+            ))).as("application/json")
+      }else{
+        InternalServerError(toJson(Map("error"->"No Info")))
+      }
+    }
+
+  }
+
+  def p7 = Action {request=>
+    DB.withConnection { implicit c =>
+      val content = SQL("""
+        SELECT * FROM long_data
+        WHERE id = {id}
+                        """)
+        .on("id"->Random.nextInt(1000)).as(SqlParser.str("content").single)
+      if(content!=null){
+
+        Ok(
+          toJson(
+            Map(
+              "msg"->toJson(content)
+
+            ))).as("application/json")
+      }else{
+        InternalServerError(toJson(Map("error"->"No Info")))
+      }
+    }
+
+  }
+
+  def p8 = Action {request =>
+
+
+    DB.withConnection { implicit c =>
+
+      val id=Random.nextInt(1000)
+      val info = SQL("""
+        SELECT * FROM small_data
+        WHERE id >= {id}
+        AND id <= {idinc}
+      """)
+        .on("id"->id,"idinc"->(id+100))().toList
+      if(info.size > 0){
+
+        Ok(
+          toJson(
+            Map(
+              "msg"->toJson(info.size),
+              "results"->toJson(info.map{row=>
+                Map(
+                  "id"->toJson(row[Long]("id")),
+                  "content"->toJson(row[String]("content")))
+              })
+            ))).as("application/json")
+      }else{
+        InternalServerError(toJson(Map("error"->"No Info")))
+      }
+    } 
   }
 
   def fib(n:Int): Int={

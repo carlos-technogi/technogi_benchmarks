@@ -9,6 +9,9 @@ GET        /benchmark/p2        controllers.Application.p2
 POST       /benchmark/p3        controllers.Application.p3
 GET        /benchmark/p4        controllers.Application.p4
 GET        /benchmark/p5        controllers.Application.p5
+GET        /benchmark/p6        controllers.Application.p6
+GET        /benchmark/p7        controllers.Application.p7
+GET        /benchmark/p8        controllers.Application.p8
 
 # Map static resources from the /public folder to the /assets URL path
 GET        /assets/*file        controllers.Assets.at(path="/public", file)
