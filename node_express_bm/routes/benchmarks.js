@@ -6,7 +6,8 @@ var pool  = mysql.createPool({
   connectionLimit : 15,
   host     : '05d33fab1c59e14845dfbc490cb823516ca6eb50.rackspaceclouddb.com',
   user     : 'technogi_bm',
-  password : 'technogi1234'
+  password : 'technogi1234',
+  database : 'benchmarks'
 });
 
 
@@ -44,9 +45,16 @@ router.get('/p5',function(req,res){
 });
 
 router.get('/p6',function(req,res){
-  pool.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
+  var id = Math.floor(Math.random()*1000);
+  console.log("Getting "+id);
+  pool.query('SELECT * FROM small_data where id = ?',[id], function(err, rows) {
     if (err) throw err;
-    res.json({msg:rows[0].solution});
+    if(rows.length>0){
+      res.json({msg:rows[0].content});
+    }else{
+      res.status(500)
+      res.json({error:"Not Found"});
+    }
   });
 });
 
