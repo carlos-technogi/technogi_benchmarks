@@ -1,5 +1,9 @@
 package controllers
 
+/*
+technogi_bm
+technogi1234
+ */
 import play.api._
 import play.api.mvc._
 import play.api.libs.json.Json.toJson
@@ -45,7 +49,7 @@ object Application extends Controller {
       ))
     }.getOrElse {
       BadRequest(toJson(
-        Map("status" -> "KO", "message" -> "Missing parameter [name]")
+        Map("status" -> "KO", "message" -> "Missing parameter [content]")
       ))
     }
   }
@@ -55,6 +59,10 @@ object Application extends Controller {
     Ok(toJson(
       Map("msg"->fib(10))
     ))
+  }
+
+  def p5 = Action {request =>
+    Ok()
   }
 
   def fib(n:Int): Int={
